@@ -1,0 +1,84 @@
+/* Contenedor general del botón */
+.boton-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Caja grande invisible */
+.boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 270px;
+}
+
+/* Margen invisible para separación */
+.margen-invisible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Caja blanca con bordes redondeados */
+.contenido-boton {
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Nombre de la provincia */
+.nombre-provincia {
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Caja que contiene el icono */
+.caja-icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+}
+
+/* Margen alrededor del icono */
+.margen-icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    height: 85%;
+}
+
+/* Caja del icono */
+.icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* SVG de la provincia */
+.provincia-svg {
+    width: 100%;
+    height: auto;
+    fill: #6A0DAD;
+    stroke: #6A0DAD;
+    stroke-width: 2;
+}

@@ -1,0 +1,93 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2, h4 {
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Colores personalizados */
+.btn-primary { background-color: #6A0DAD; border: none; } /* LLA - Violeta */
+.btn-primary:hover { background-color: #5c0c96; }
+
+.btn-warning { background-color: #FFD700; border: none; } /* JxC - Amarillo */
+.btn-warning:hover { background-color: #e6c200; }
+
+.btn-info { background-color: #00AEEF; border: none; } /* UP - Celeste */
+.btn-info:hover { background-color: #009cd9; }
+
+.btn-success { background-color: #28a745; border: none; } /* Acciones Positivas */
+.btn-success:hover { background-color: #218838; }
+
+.btn-danger { background-color: #dc3545; border: none; } /* Acciones Negativas */
+.btn-danger:hover { background-color: #c82333; }
+
+.btn-dark { background-color: #343a40; border: none; } /* Volver */
+.btn-dark:hover { background-color: #23272b; }
+
+/* Mejoras en tablas */
+.table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #6A0DAD;
+    color: white;
+    text-align: center;
+}
+
+/* Estilos para los mensajes de éxito y error */
+.alert-success, .alert-danger {
+    display: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Estilos del gráfico de resultados */
+#graficoResultados {
+    max-width: 300px;
+    margin: auto;
+    display: block;
+}
+
+/* Animaciones de entrada */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

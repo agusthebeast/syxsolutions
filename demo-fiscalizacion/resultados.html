@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados en Tiempo Real</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: url('https://i.postimg.cc/PxNngRZj/SYX-2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        canvas {
+            max-width: 300px;
+            max-height: 300px;
+            margin: auto;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body class="bg-light">
+    <div class="container mt-5 text-center">
+        <h2 class="mb-4">Resultados en Tiempo Real</h2>
+
+        <!-- Selección de Provincia -->
+        <div id="seleccionarProvincia" class="grid-container">
+            <div class="provincia-card" onclick="mostrarSecciones()">
+                <svg viewBox="0 0 200 200" class="mapa">
+                    <path d="M135 55L129 55L128 53L130 49L121 44L115 38L112 38L111 40L109 38L106 38L103 41L103 44L99 47L100 54L98 54L96 58L93 69L96 75L91 90L92 94L89 101L90 115L92 115L90 118L91 119L88 130L89 131L85 135L85 140L86 142L88 141L89 148L99 151L99 161L108 162L102 157L97 143L98 140L107 130L107 127L104 126L102 122L103 119L108 115L110 108L109 101L113 103L117 102L117 95L126 94L133 87L128 78L130 66L129 65L134 61L135 58L141 54L141 51L139 50L138 53z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2"></path>
+                </svg>
+                <p>Argentina</p>
+            </div>
+            <div class="provincia-card" onclick="mostrarSecciones()">
+                <svg viewBox="0 0 200 200" class="mapa">
+                    <path d="M198 61L195 56L192 58L194 56L192 53L189 55L185 47L184 48L180 45L173 43L174 41L171 41L170 36L165 32L164 33L159 29L158 30L161 32L156 29L154 32L153 30L156 29L155 26L153 28L152 23L149 22L146 27L119 41L97 99L98 134L147 179L175 140L184 137L187 139L190 138L197 141L202 137L211 136L216 130L223 125L221 120L226 118L226 112L221 107L226 110L229 114L231 113L231 110L233 110L234 112L235 111L233 109L237 111L240 109L236 106L238 106L237 102L234 102L232 104L231 103L233 102L228 102L236 101L235 95L232 92L230 86L224 81L216 83L215 80L217 79L218 81L216 77L222 75L219 75L219 73L222 73L217 71L221 70L215 69L214 68L218 68L216 66L211 67L210 66L214 65L204 62L208 62L206 60L199 59L205 64L203 65z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(-60,0)">
+                    </path>
+
+                </svg>
+                <p>Ciudad Autónoma de Buenos Aires</p>
+            </div>
+
+            <div class="provincia-card" onclick="window.location.href='resultadosbuenosaires.html'">
+                <svg viewBox="0 0 200 200" class="mapa">
+                    <path d="M188 55L180 53L167 45L164 50L160 49L150 60L131 60L131 151L133 151L137 155L139 156L143 153L145 149L141 145L143 143L143 138L145 138L146 133L143 129L143 122L151 126L156 126L186 119L196 114L206 97L207 89L206 87L203 87L199 82L202 75L198 69L188 63L187 64L187 58z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(-60,0)">
+                    </path>
+                </svg>
+                <p>Buenos Aires</p>
+            </div>
+            
+
+            <div class="provincia-card" onclick="mostrarSecciones()">
+                <svg viewBox="0 0 200 200" class="mapa">
+                    <path d="M156 123L157 120L155 106L151 104L147 106L147 108L145 108L142 102L140 104L136 90L133 89L139 80L138 75L133 73L133 61L131 61L128 67L124 64L118 55L119 49L123 49L123 39L91 38L79 36L77 37L78 48L82 62L78 64L77 70L84 80L83 84L72 84L73 85L66 98L66 102L78 101L81 105L80 108L91 111L94 117L99 116L110 118L113 114L123 116L125 125L128 127L127 131L134 132L140 139L140 141L142 141L149 163L156 162L161 158L160 149L163 149L163 145L161 143L163 135L161 131L156 127L156 124z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(-10,0)">
+                    </path>
+
+                </svg>
+                <p>Catamarca</p>
+            </div>
+
+            <div class="provincia-card" onclick="mostrarSecciones()">
+                <svg viewBox="0 0 200 200" class="mapa">
+                    <path d="M88 101L90 108L88 110L89 111L85 123L83 125L84 174L123 174L123 157L135 157L160 120L160 114L156 110L158 109L157 105L154 99L152 98L149 84L153 80L159 57L152 52L151 48L143 48L143 42L137 35L122 33L122 30L116 30L114 28L110 29L110 27L102 26L88 28L89 37L84 41L77 42L75 52L69 66L69 89L80 94L82 101z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(-10,0)">
+                    </path>
+
+                </svg>
+                <p>Còrdoba</p>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">
+                Volver al Panel
+            </button>
+        </div>           
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('graficoTorta').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['La Libertad Avanza', 'Juntos por el Cambio', 'Unión por la Patria', 'En blanco', 'Nulos'],
+                    datasets: [{
+                        data: [30, 25, 35, 5, 5], // Porcentajes de votos
+                        backgroundColor: ['#800080', '#FFD700', '#1E90FF', '#808080', '#000000'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
+</body>
+</html>

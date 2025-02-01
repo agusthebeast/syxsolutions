@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa 180 - Fiscales y Resultados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: url('https://i.postimg.cc/PxNngRZj/SYX-2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+
+        .fiscales-list {
+            text-align: left;
+            margin: auto;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5 text-center">
+        <h2 class="mb-4">Mesa 180 - Fiscales y Resultados</h2>
+
+        <!-- Lista de Fiscales -->
+        <div class="fiscales-list">
+            <h4 class="text-center">Fiscales Presentes:</h4>
+            <ul class="list-group">
+                <li class="list-group-item">📌 Juan Pérez (La Libertad Avanza)</li>
+                <li class="list-group-item">📌 María López (Juntos por el Cambio)</li>
+                <li class="list-group-item">📌 Carlos Rodríguez (Unión por la Patria)</li>
+                <li class="list-group-item">📌 Ana Gómez (Presidente de mesa)</li>
+            </ul>
+        </div>
+
+        <!-- Gráfico de Resultados -->
+        <div class="chart-container mt-4">
+            <canvas id="graficoMesa180"></canvas>
+        </div>
+
+        <!-- Botón de Volver -->
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">
+                Volver al Panel
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('graficoMesa180').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['La Libertad Avanza', 'Juntos por el Cambio', 'Unión por la Patria', 'En blanco', 'Nulos'],
+                    datasets: [{
+                        data: [32, 28, 30, 6, 4], // Porcentajes de votos en la mesa 180
+                        backgroundColor: ['#800080', '#FFD700', '#1E90FF', '#808080', '#000000'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'black',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

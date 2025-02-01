@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Ayuda</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: url('https://i.postimg.cc/PxNngRZj/SYX-2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Chatbot de Asesoramiento</h2>
+
+        <div class="card p-4 mt-4">
+            <label for="pregunta" class="form-label">Haz tu pregunta:</label>
+            <input type="text" id="pregunta" class="form-control" placeholder="Ej: ¿Qué hago si faltan boletas?">
+            <button class="btn btn-primary mt-3 w-100" onclick="enviarPregunta()">Enviar</button>
+        </div>
+
+        <div class="card p-4 mt-4">
+            <h5>Respuesta:</h5>
+            <p id="respuesta" class="text-muted">Aquí aparecerá la respuesta del chatbot.</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">
+                🔙 Volver al Panel
+            </button>
+        </div>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Sección Electoral</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Elegir Sección Electoral</h2>
+        <div class="d-grid gap-3 mt-4">
+            <button class="btn btn-primary" onclick="seleccionarSeccion(1)">Primera Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(2)">Segunda Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(3)">Tercera Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(4)">Cuarta Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(5)">Quinta Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(6)">Sexta Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(7)">Séptima Sección</button>
+            <button class="btn btn-primary" onclick="seleccionarSeccion(8)">Octava Sección</button>
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">🔙 Volver al Panel</button>
+        </div>
+    </div>
+    <script>
+        function seleccionarSeccion(seccion) {
+            window.location.href = `seleccionar_distrito.html?seccion=${seccion}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Mesa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: url('https://i.postimg.cc/PxNngRZj/SYX-2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+    </style>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Actualizar Estado de la Mesa</h2>
+
+        <div class="d-grid gap-3 mt-4">
+            <button class="btn btn-success" onclick="abrirMesa()">
+                🟢 Abrir Mesa
+            </button>
+            <button class="btn btn-danger" onclick="window.location.href='escrutinio.html'">
+                🔴 Cerrar/Editar Mesa
+            </button>
+            <button class="btn btn-warning" onclick="pedirAsistencia()">
+                🚨 Pedir Asistencia a Mesa
+            </button>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">
+                🔙 Volver al Panel
+            </button>
+            <button class="btn btn-dark" onclick="window.location.href='login.html'">
+                ⏪ Volver al Inicio
+            </button>
+        </div>
+    </div>
+
+    <script src="mesa.js"></script>
+</body>
+</html>

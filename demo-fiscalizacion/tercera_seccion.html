@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados en Tiempo Real</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        body {
+            background: url('https://i.postimg.cc/PxNngRZj/SYX-2.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        canvas {
+            max-width: 400px;
+            max-height: 400px;
+            margin: auto;
+        }
+
+        .chart-container {
+            width: 400px;
+            height: 400px;
+            margin: auto;
+        }
+
+    </style>
+
+</head>
+<body class="bg-light">
+    <div class="container mt-5 text-center">
+        <h2 class="mb-4">Resultados en Tiempo Real</h2>
+
+        <!-- Selección de Provincia -->
+        <div id="seleccionarProvincia" class="grid-container">
+
+            <div class="provincia-card" onclick="window.location.href='resultadosbuenosaires.html'">
+                <svg viewBox="400 -500 400 400" class="mapa">
+                    <path d="M584 -271L613 -306L553 -393L587 -415L548 -484L412 -373L386 -357L433 -256L461 -209Z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(100,35) scale(1)">
+                    </path>
+                </svg>
+                <p>Almirante Brown</p>
+            </div>
+
+            <div class="provincia-card" onclick="window.location.href='sanvicente.html'">
+                <svg viewBox="550 -250 100 100" class="mapa">
+                    <path d="M617 -216L616 -225L611 -234L583 -215L584 -229L579 -233L567 -223L567 -216L559 -206L562 -203L562 -184L564 -180L582 -163L604 -186L606 -185L624 -204L622 -206z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2">
+                    </path>
+                </svg>
+                <p>San Vicente</p>
+            </div>
+
+            <div class="provincia-card" onclick="window.location.href='resultadosbuenosaires.html'">
+                <svg viewBox="500 -300 300 300" class="mapa">
+                    <path d="M577 -180L627 -213L584 -271L461 -209L433 -256L324 -175L360 -141L355 -27L424 -86z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(280,-10) scale(0.8)">
+                    </path>
+                </svg>
+                <p>Presidente Perón</p>
+            </div>
+
+            <div class="provincia-card" onclick="window.location.href='resultadosbuenosaires.html'">
+                <svg viewBox="500 -300 300 300" class="mapa">
+                    <path d="M732 -132L679 -183L776 -287L748 -379L649 -450L587 -415L553 -393L613 -306L584 -271L627 -213L577 -180L619 -110L629 -37z"
+                        fill="#007BFF" stroke="#0056b3" stroke-width="2" transform="translate(250,0) scale(0.6)">
+                    </path>
+                </svg>
+                <p>Florencio Varela</p>
+            </div>
+        </div>
+
+        <!-- Gráfico de Resultados -->
+        <div class="chart-container mt-4">
+            <canvas id="graficoTorta"></canvas>
+        </div>
+
+        <!-- Botón de Volver -->
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.location.href='panel.html'">
+                Volver al Panel
+            </button>
+        </div>           
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('graficoTorta').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['La Libertad Avanza', 'Juntos por el Cambio', 'Unión por la Patria', 'En blanco', 'Nulos'],
+                    datasets: [{
+                        data: [30, 25, 35, 5, 5], // Porcentajes de votos
+                        backgroundColor: ['#800080', '#FFD700', '#1E90FF', '#808080', '#000000'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white', // Letras blancas en la leyenda
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

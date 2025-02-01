@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Distrito</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center">Elegir Distrito</h2>
+        <div id="distritosContainer" class="d-grid gap-3 mt-4"></div>
+        <div class="text-center mt-4">
+            <button class="btn btn-secondary" onclick="window.history.back()">🔙 Volver</button>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const seccion = urlParams.get('seccion');
+
+        const distritosPorSeccion = {
+            1: ["Campana", "Escobar", "General Las Heras", "General Rodríguez", "General San Martín", "Hurlingham", "Ituzaingó", "José C. Paz", "Luján", "Malvinas Argentinas", "Marcos Paz", "Mercedes", "Merlo", "Moreno", "Morón", "Navarro", "Pilar", "San Fernando", "San Isidro", "San Miguel", "Suipacha", "Tigre", "Tres de Febrero", "Vicente López"],
+            2: ["Arrecifes", "Baradero", "Capitán Sarmiento", "Colón", "Exaltación de la Cruz", "Pergamino", "Ramallo", "Rojas", "Salto", "San Antonio de Areco", "San Nicolás", "San Pedro", "Zárate"],
+            3: ["Almirante Brown", "Avellaneda", "Berazategui", "Esteban Echeverría", "Ezeiza", "Florencio Varela", "Lanús", "Lomas de Zamora", "Quilmes"],
+            4: ["General Arenales", "General Pinto", "General Viamonte", "Junín", "Leandro N. Alem", "Lincoln", "Rivadavia", "Ameghino", "Chacabuco", "Chivilcoy", "Carlos Casares", "Carlos Tejedor", "Florentino Ameghino", "Hipólito Yrigoyen", "Nueve de Julio", "Pehuajó", "Alberti", "Bragado"],
+            5: ["Ayacucho", "Balcarce", "General Alvarado", "General Guido", "General Juan Madariaga", "General Lavalle", "General Pueyrredón", "La Costa", "Lobería", "Maipú", "Mar Chiquita", "Necochea", "Partido de Pinamar", "Partido de Villa Gesell", "Tandil"],
+            6: ["Adolfo Alsina", "Adolfo Gonzales Chaves", "Bahía Blanca", "Benito Juárez", "Coronel Dorrego", "Coronel Pringles", "Coronel Rosales", "Coronel Suárez", "Daireaux", "General Lamadrid", "Guaminí", "Laprida", "Monte Hermoso", "Patagones", "Puán", "Saavedra", "Salliqueló", "Tornquist", "Tres Arroyos", "Tres Lomas", "Villarino"],
+            7: ["25 de Mayo", "Azul", "Bolívar", "General Alvear", "Olavarría", "Roque Pérez", "Saladillo", "Tapalqué"],
+            8: ["La Plata"]
+        };
+
+        const distritos = distritosPorSeccion[seccion] || [];
+        const container = document.getElementById('distritosContainer');
+
+        distritos.forEach(distrito => {
+            const button = document.createElement('button');
+            button.className =
+::contentReference[oaicite:0]{index=0}
+ 
