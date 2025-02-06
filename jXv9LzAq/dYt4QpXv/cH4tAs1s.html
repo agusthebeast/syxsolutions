@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Asistencia Legal</title>
+    <link rel="stylesheet" href="../kDq8NmYx/uP3yL1wQ.css"> <!-- CSS con nombre aleatorio -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Contenedor del chat */
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Cuadro de pregunta */
+        #questionInput {
+            width: 90%;
+            padding: 12px;
+            border: 2px solid #4a148c;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            background-color: white;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        /* Cuadro de respuesta */
+        .response-box {
+            width: 90%;
+            padding: 12px;
+            border: 2px solid #4a148c;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: white;
+            color: #333;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="../bVt7XoZp/nPz3WqLv.png" alt="Logo">
+        </div>
+
+        <h2>CHATBOT ASISTENCIA</h2>
+
+        <div class="chat-box">
+            <label for="questionInput"><strong>HAZ TU PREGUNTA:</strong></label>
+            <input type="text" id="questionInput" placeholder="ej: ¿Cómo impugno un voto?" onkeypress="if(event.key === 'Enter') getResponse()">
+            
+            <label for="responseBox"><strong>RESPUESTA:</strong></label>
+            <div id="responseBox" class="response-box">Aquí aparecerá la respuesta...</div>
+        </div>
+
+        <button class="form-btn" onclick="getResponse()">Enviar</button>
+
+        <button class="form-btn" onclick="window.location.href='t3Fz9X.html'">
+            <img src="https://i.postimg.cc/YSTJQ90N/menu-button.png" alt="Ícono de salida" class="icon">
+                Volver al panel
+            </button>
+    </div>
+
+    <script>
+        let responses = {
+            "impugnar un voto": "Para impugnar un voto, debes fundamentar el motivo en el acta y comunicarlo a las autoridades de mesa.",
+            "denunciar fraude": "Para denunciar fraude electoral, informa a los fiscales generales y contacta la Junta Electoral.",
+            "mesa cerrada": "Si una mesa está cerrada, comunícate con el responsable de fiscalización o la autoridad electoral.",
+            "faltan boletas": "Si faltan boletas, repórtalo de inmediato a la mesa y a la autoridad de fiscalización.",
+            "voto observado": "Un voto observado es aquel que presenta dudas sobre su validez y se resuelve después del escrutinio.",
+            "quién puede votar": "Pueden votar los ciudadanos mayores de 16 años con DNI actualizado en el padrón electoral.",
+            "qué pasa si no voto": "Si no votas y no justificas tu ausencia, podrías recibir una multa y quedar registrado en el Registro de Infractores.",
+            "puedo votar sin dni": "No, solo puedes votar con el documento habilitado según el padrón electoral.",
+            "cómo saber dónde voto": "Puedes consultar tu lugar de votación en la web oficial de la Junta Electoral."
+        };
+
+        function getResponse() {
+            let input = document.getElementById("questionInput").value.toLowerCase().trim();
+            let responseBox = document.getElementById("responseBox");
+
+            if (input === "") {
+                responseBox.innerText = "Por favor, escribe una pregunta.";
+                return;
+            }
+
+            let response = "Lo siento, no tengo información sobre eso. Consulta con un fiscal de mesa.";
+            for (let key in responses) {
+                if (input.includes(key)) {
+                    response = responses[key];
+                    break;
+                }
+            }
+
+            responseBox.innerText = response;
+        }
+    </script>
+</body>
+</html>

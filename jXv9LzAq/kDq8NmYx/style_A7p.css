@@ -1,0 +1,84 @@
+body {
+    background: url('../r5NpZo/fondo.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.titulo {
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #753BBD;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #753BBD;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn img {
+    width: 24px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background: #753BBD;
+    color: white;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #FF3333;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF3333;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    width: 70%;
+}
+
+.btn-logout img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.btn-logout:hover {
+    background: #FF3333;
+    color: white;
+}
