@@ -24,7 +24,8 @@
     <script>
         function enviarWhatsApp() {
             let numero = "5491157331559"; // Reemplaza con el número de WhatsApp (sin + ni espacios)
-            let mensaje = encodeURIComponent("La mesa xxx ha sido abierta");
+            let mensaje = encodeURIComponent("🔔 Notificación: La mesa XXX ha sido abierta.
+");
             window.location.href = `https://wa.me/${numero}?text=${mensaje}`;
         }
     </script>
