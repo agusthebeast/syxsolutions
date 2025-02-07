@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingreso Seguro</title>
     <link rel="stylesheet" href="../kDq8NmYx/uP3yL1wQ.css">
+    <script type="module" src="./sX9mA4tQ/firebaseConfig.js"></script>
 </head>
 <body>
     <div class="container">
@@ -12,29 +13,45 @@
             <img src="../bVt7XoZp/nPz3WqLv.png" alt="Logo">
         </div>
 
-        
- <div class="form-container">
-    <p class="title">Bienvenidos</p>
-    <form class="form">
-      <input type="DNI" class="input" placeholder="D.N.I.">
-      <input type="password" class="input" placeholder="Contraseña">
-    </form>
-    <button class="form-btn">
-        <img src="https://i.postimg.cc/J4fGF790/pie-chart.png" alt="Ícono de estadísticas" class="icon">
-        Ver estadísticas
-        </button>
-        <button class="form-btn" onclick="window.location.href='t3Fz9X.html'">
-            Iniciar sesion
-        </button>
-    <div>
-        <p>¿No tienes una cuenta? 
-            <a href="aWq9XpNz.html" class="sign-up-link">Registrate</a>
-        </p>
-    </div>
-    <div class="buttons-container">
-    </div>
- </div>
+        <div class="form-container">
+            <p class="title">Bienvenidos</p>
+            <form class="form" id="loginForm">
+                <input type="email" id="loginCorreo" class="input" placeholder="Correo electrónico">
+                <input type="password" id="loginContraseña" class="input" placeholder="Contraseña">
+                <button type="submit" class="form-btn">Iniciar Sesión</button>
+            </form>
 
-    <script src="../rXq5LpNz/oM7zNpXq.js"></script>
+            <button class="form-btn">
+                <img src="https://i.postimg.cc/J4fGF790/pie-chart.png" alt="Ícono de estadísticas" class="icon">
+                Ver estadísticas
+            </button>
+
+            <div>
+                <p>¿No tienes una cuenta? 
+                    <a href="aWq9XpNz.html" class="sign-up-link">Registrate</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth } from "./sX9mA4tQ/firebaseConfig.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let email = document.getElementById("loginCorreo").value;
+            let password = document.getElementById("loginContraseña").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Inicio de sesión exitoso.");
+                    window.location.href = "t3Fz9X.html"; // Redirige al panel
+                })
+                .catch((error) => {
+                    alert("Error en el inicio de sesión: " + error.message);
+                });
+        });
+    </script>
 </body>
 </html>

@@ -5,32 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
     <link rel="stylesheet" href="../kDq8NmYx/uP3yL1wQ.css">
+    <script type="module" src="./sX9mA4tQ/firebaseConfig.js"></script>
+    <script type="module" src="../rXq5LpNz/oM7zNpXq.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="logo">
             <img src="../bVt7XoZp/nPz3WqLv.png" alt="Logo">
         </div>
- <div class="form-container">
-    <p class="title">Registrar usuario</p>
-    <form class="form" onsubmit="registrarUsuario(event)">
-      <input type="text" id="dni" class="input" placeholder="D.N.I." required>
-      <input type="text" id="nombre" class="input" placeholder="Nombre" required>
-      <input type="email" id="correo" class="input" placeholder="Correo electrónico" required>
-      <input type="text" id="celular" class="input" placeholder="Celular" required>
-      <input type="password" id="contraseña" class="input" placeholder="Contraseña" required>
-  
-      <!-- Input para cargar imagen -->
-      <label for="fotoDni">Subir Foto del DNI (frente):</label>
-      <input type="file" id="fotoDni" accept="image/*" required>
-  
-      <button class="form-btn">Registrarse</button>
-  </form>
-  
-    <div class="buttons-container">
-    </div>
-  </div>
 
-    <script src="../rXq5LpNz/oM7zNpXq.js"></script>
+        <div class="form-container">
+            <p class="title">Registrar usuario</p>
+            <form class="form" id="registerForm">
+                <input type="text" id="dni" class="input" placeholder="D.N.I." required>
+                <input type="text" id="nombre" class="input" placeholder="Nombre" required>
+                <input type="email" id="correo" class="input" placeholder="Correo electrónico" required>
+                <input type="text" id="celular" class="input" placeholder="Celular" required>
+                <input type="password" id="contraseña" class="input" placeholder="Contraseña" required>
+
+                <!-- Input para cargar imagen -->
+                <label for="fotoDni">Subir Foto del DNI (frente):</label>
+                <input type="file" id="fotoDni" accept="image/*" required>
+
+                <button type="submit" class="form-btn">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db, storage } from "./sX9mA4tQ/firebaseConfig.js";
+        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+        import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
+
+        document.getElementById("registerForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            
+            let dni = document.getElementById("dni").value;
+            let nombre = document.getElementById("nombre").value;
+            let email = document.getElementById("correo").value;
+            let celular = document.getElementById("celular").value;
+            let password = document.getElementById("contraseña").value;
+            let fotoDni = document.getElementById("fotoDni").files[0];
+
+            try {
+                let userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                let userId = userCredential.user.uid;
+
+                // Subir imagen a Firebase Storage
+                let storageRef = ref(storage, `dni/${userId}`);
+                await uploadBytes(storageRef, fotoDni);
+                let dniUrl = await getDownloadURL(storageRef);
+
+                // Guardar datos en Firestore
+                await setDoc(doc(db, "usuarios", userId), {
+                    dni, nombre, email, celular, dniUrl
+                });
+
+                alert("Registro exitoso.");
+                window.location.href = "login.html";
+
+            } catch (error) {
+                alert("Error en el registro: " + error.message);
+            }
+        });
+    </script>
 </body>
 </html>
