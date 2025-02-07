@@ -1,55 +1,73 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    let dni = document.getElementById("dni").value;
-    let password = document.getElementById("password").value;
+import { auth, db, storage } from "../sX9mA4tQ/firebaseConfig.js";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
 
-    if (dni === "" || password === "") {
-        alert("Por favor, complete todos los campos.");
-        return;
+/**
+ * Función para registrar un nuevo usuario con Firebase Authentication.
+ * También guarda los datos en Firestore y sube la imagen del DNI a Storage.
+ */
+async function registrarUsuario(event) {
+    event.preventDefault();
+
+    let dni = document.getElementById("dni").value;
+    let nombre = document.getElementById("nombre").value;
+    let email = document.getElementById("correo").value;
+    let celular = document.getElementById("celular").value;
+    let password = document.getElementById("contraseña").value;
+    let fotoDni = document.getElementById("fotoDni").files[0];
+
+    try {
+        // Crear usuario en Firebase Authentication
+        let userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        let userId = userCredential.user.uid;
+
+        // Subir imagen a Firebase Storage
+        let storageRef = ref(storage, `dni/${userId}`);
+        await uploadBytes(storageRef, fotoDni);
+        let dniUrl = await getDownloadURL(storageRef);
+
+        // Guardar datos en Firestore
+        await setDoc(doc(db, "usuarios", userId), {
+            dni, nombre, email, celular, dniUrl
+        });
+
+        alert("Registro exitoso.");
+        window.location.href = "login.html";
+
+    } catch (error) {
+        alert("Error en el registro: " + error.message);
+    }
+}
+
+/**
+ * Función para iniciar sesión con Firebase Authentication.
+ */
+async function iniciarSesion(event) {
+    event.preventDefault();
+
+    let email = document.getElementById("loginCorreo").value;
+    let password = document.getElementById("loginContraseña").value;
+
+    try {
+        let userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert("Inicio de sesión exitoso.");
+        window.location.href = "t3Fz9X.html"; // Redirige al panel
+
+    } catch (error) {
+        alert("Error en el inicio de sesión: " + error.message);
+    }
+}
+
+// Event listeners para capturar el evento de submit en los formularios
+document.addEventListener("DOMContentLoaded", () => {
+    let registroForm = document.getElementById("registerForm");
+    if (registroForm) {
+        registroForm.addEventListener("submit", registrarUsuario);
     }
 
-    // Simulación de autenticación (esto luego se conecta con el backend)
-    if (dni === "12345678" && password === "admin") {
-        window.location.href = "../dYt4QpXv/xNv8YpTq.html"; // Redirige al dashboard
-    } else {
-        alert("DNI o contraseña incorrectos.");
+    let loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.addEventListener("submit", iniciarSesion);
     }
 });
-
-function registrarUsuario(event) {
-    event.preventDefault();
-
-    let url = "TU_URL_DE_IMPLEMENTACION"; // Reemplázala con la URL del Apps Script
-    let fileInput = document.getElementById("fotoDni");
-    let file = fileInput.files[0];
-
-    if (!file) {
-        alert("Debes subir una foto del DNI.");
-        return;
-    }
-
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        let base64String = reader.result.split(',')[1]; // Convertimos a Base64
-        
-        let usuario = {
-            dni: document.getElementById("dni").value,
-            nombre: document.getElementById("nombre").value,
-            correo: document.getElementById("correo").value,
-            celular: document.getElementById("celular").value,
-            contraseña: document.getElementById("contraseña").value,
-            foto_dni: base64String, // Guardamos la imagen en base64
-            mimeType: file.type
-        };
-
-        fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(usuario)
-        })
-        .then(() => alert("Registro exitoso"))
-        .catch(error => console.error("Error:", error));
-    };
-}
