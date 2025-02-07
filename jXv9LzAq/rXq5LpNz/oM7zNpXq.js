@@ -1,73 +1,78 @@
-import { auth, db, storage } from "../sX9mA4tQ/firebaseConfig.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
-import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
 
-/**
- * Función para registrar un nuevo usuario con Firebase Authentication.
- * También guarda los datos en Firestore y sube la imagen del DNI a Storage.
- */
+// Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAcRHO-N9ajnS7zkDE6y9huyfzot59MLz8",
+  authDomain: "fiscalizacionapp-7041b.firebaseapp.com",
+  projectId: "fiscalizacionapp-7041b",
+  storageBucket: "fiscalizacionapp-7041b.appspot.com",
+  messagingSenderId: "56623377151",
+  appId: "1:56623377151:web:29013582facd0d21c43aca"
+};
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
+const storage = getStorage();
+
+// 📌 REGISTRAR USUARIO
 async function registrarUsuario(event) {
     event.preventDefault();
 
-    let dni = document.getElementById("dni").value;
-    let nombre = document.getElementById("nombre").value;
-    let email = document.getElementById("correo").value;
-    let celular = document.getElementById("celular").value;
-    let password = document.getElementById("contraseña").value;
-    let fotoDni = document.getElementById("fotoDni").files[0];
+    const dni = document.getElementById("dni").value;
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("correo").value;
+    const celular = document.getElementById("celular").value;
+    const contraseña = document.getElementById("contraseña").value;
+    const fotoDni = document.getElementById("fotoDni").files[0];
 
     try {
-        // Crear usuario en Firebase Authentication
-        let userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        let userId = userCredential.user.uid;
-
-        // Subir imagen a Firebase Storage
-        let storageRef = ref(storage, `dni/${userId}`);
+        // 1️⃣ Crear usuario en Firebase Auth
+        const userCredential = await createUserWithEmailAndPassword(auth, email, contraseña);
+        const user = userCredential.user;
+        
+        // 2️⃣ Subir foto del DNI a Firebase Storage
+        const storageRef = ref(storage, `dni/${user.uid}`);
         await uploadBytes(storageRef, fotoDni);
-        let dniUrl = await getDownloadURL(storageRef);
-
-        // Guardar datos en Firestore
-        await setDoc(doc(db, "usuarios", userId), {
-            dni, nombre, email, celular, dniUrl
+        const dniURL = await getDownloadURL(storageRef);
+        
+        // 3️⃣ Guardar usuario en Firestore
+        await addDoc(collection(db, "usuarios"), {
+            uid: user.uid,
+            dni: dni,
+            nombre: nombre,
+            email: email,
+            celular: celular,
+            dniURL: dniURL
         });
 
-        alert("Registro exitoso.");
-        window.location.href = "login.html";
-
+        alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        window.location.href = "t3Fz9X.html"; // Redirigir al login
     } catch (error) {
-        alert("Error en el registro: " + error.message);
+        alert("Error al registrar usuario: " + error.message);
     }
 }
 
-/**
- * Función para iniciar sesión con Firebase Authentication.
- */
+// 📌 INICIAR SESIÓN
 async function iniciarSesion(event) {
     event.preventDefault();
 
-    let email = document.getElementById("loginCorreo").value;
-    let password = document.getElementById("loginContraseña").value;
+    const email = document.getElementById("loginEmail").value;
+    const contraseña = document.getElementById("loginPassword").value;
 
     try {
-        let userCredential = await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, contraseña);
         alert("Inicio de sesión exitoso.");
-        window.location.href = "t3Fz9X.html"; // Redirige al panel
-
+        window.location.href = "t3Fz9X.html"; // Redirigir al panel
     } catch (error) {
         alert("Error en el inicio de sesión: " + error.message);
     }
 }
 
-// Event listeners para capturar el evento de submit en los formularios
-document.addEventListener("DOMContentLoaded", () => {
-    let registroForm = document.getElementById("registerForm");
-    if (registroForm) {
-        registroForm.addEventListener("submit", registrarUsuario);
-    }
-
-    let loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.addEventListener("submit", iniciarSesion);
-    }
-});
+// Conectar las funciones a los formularios
+document.querySelector(".form").addEventListener("submit", registrarUsuario);
+document.querySelector("#loginForm").addEventListener("submit", iniciarSesion);
