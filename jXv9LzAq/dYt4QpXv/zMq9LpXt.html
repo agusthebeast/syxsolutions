@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingreso Seguro</title>
     <link rel="stylesheet" href="../kDq8NmYx/uP3yL1wQ.css">
-    <script type="module" src="./sX9mA4tQ/firebaseConfig.js"></script>
-    <script type="module" src="../rXq5LpNz/oM7zNpXq.js"></script>
-
 </head>
 <body>
     <div class="container">
@@ -18,41 +15,36 @@
         <div class="form-container">
             <p class="title">Bienvenidos</p>
             <form class="form" id="loginForm">
-                <input type="email" id="loginCorreo" class="input" placeholder="Correo electrónico">
-                <input type="password" id="loginContraseña" class="input" placeholder="Contraseña">
-                <button type="submit" class="form-btn">Iniciar Sesión</button>
+                <input type="text" id="dni" class="input" placeholder="D.N.I." required>
+                <input type="email" id="email" class="input" placeholder="Correo Electrónico" required>
+                <input type="password" id="password" class="input" placeholder="Contraseña" required>
+                <button type="submit" class="form-btn">Iniciar sesión</button>
             </form>
-
-            <button class="form-btn">
-                <img src="https://i.postimg.cc/J4fGF790/pie-chart.png" alt="Ícono de estadísticas" class="icon">
-                Ver estadísticas
-            </button>
-
-            <div>
-                <p>¿No tienes una cuenta? 
-                    <a href="aWq9XpNz.html" class="sign-up-link">Registrate</a>
-                </p>
-            </div>
+            <p>¿No tienes una cuenta? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZH1uQ05bbn-KfZpxAQnmFlNXQ1q5lTAGY2EGlVTRRX-Pb6w/viewform?usp=dialog" class="sign-up-link">Regístrate</a></p>
         </div>
     </div>
 
-    <script type="module">
-        import { auth } from "./sX9mA4tQ/firebaseConfig.js";
-        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var dni = document.getElementById("dni").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
 
-        document.getElementById("loginForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-            let email = document.getElementById("loginCorreo").value;
-            let password = document.getElementById("loginContraseña").value;
+            var scriptURL = "https://script.google.com/macros/s/AKfycbxYLFC1l_lmvzMFrmx23WgKpwv5_NA19ahi7dudLHLUZsvqgylIBSX_XBBvgKKDUDwc/exec"; // Reemplazar con tu URL
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    alert("Inicio de sesión exitoso.");
-                    window.location.href = "t3Fz9X.html"; // Redirige al panel
+            fetch(`${scriptURL}?email=${email}&dni=${dni}&password=${password}`)
+                .then(response => response.text())
+                .then(data => {
+                    if (data.trim() === "OK") {
+                        alert("Inicio de sesión exitoso.");
+                        window.location.href = "t3Fz9X.html"; // Redirigir al panel
+                    } else {
+                        alert("Datos incorrectos. Intenta nuevamente.");
+                    }
                 })
-                .catch((error) => {
-                    alert("Error en el inicio de sesión: " + error.message);
-                });
+                .catch(error => alert("Error de conexión."));
         });
     </script>
 </body>
