@@ -32,7 +32,7 @@
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
-            var scriptURL = "https://script.google.com/macros/s/AKfycbxYLFC1l_lmvzMFrmx23WgKpwv5_NA19ahi7dudLHLUZsvqgylIBSX_XBBvgKKDUDwc/exec"; // Reemplazar con tu URL
+            var scriptURL = "https://script.google.com/macros/s/AKfycbyqHH_LTCpNYwcBD8im8y_J3L0T-snWvrVksg1dOnwugKF-rS4vLISiRQGo71qw6wf6/exec"; // Reemplazar con tu URL
 
             fetch(`${scriptURL}?email=${email}&dni=${dni}&password=${password}`)
                 .then(response => response.text())
