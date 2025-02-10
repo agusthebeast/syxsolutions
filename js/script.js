@@ -1,30 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("whatsapp-form");
+document.getElementById("sendBtn").addEventListener("click", function(event) {
+    event.preventDefault();
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+    // Capturar datos del formulario
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
 
-        // Obtén los valores del formulario
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
+    if (!name || !email || !message) {
+        alert("❌ Por favor, completa todos los campos.");
+        return;
+    }
 
-        // Validar campos vacíos
-        if (!name || !email || !message) {
-            alert("Por favor, completa todos los campos.");
-            return;
-        }
-
-        // Número de WhatsApp al que quieres enviar el mensaje
-        const phoneNumber = "5491157331559"; // Tu número de WhatsApp
-
-        // Construye el mensaje
-        const whatsappMessage = `Hola, soy ${name}. Mi correo es ${email}. Quiero decirte lo siguiente: ${message}`;
-
-        // Crea el enlace de WhatsApp
-        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-        // Redirige al usuario a WhatsApp
-        window.open(whatsappURL, "_blank");
+    // Configuración de EmailJS
+    emailjs.send("service_jxem99o", "template_pmx9xl9", {
+        name: name,
+        reply_to: email,
+        message: message
+    }, "oeeUVR6Mui9Yxtrs8")
+    .then(function(response) {
+        alert("✅ Mensaje enviado con éxito!");
+    }, function(error) {
+        alert("❌ Error al enviar el mensaje. Revisa la consola.");
+        console.error(error);
     });
 });
