@@ -207,7 +207,7 @@ form .btn:hover {
 
 /* From Uiverse.io by JkHuger */ 
 .singup {
-    color: #000;
+    color: #003d80;
     text-transform: uppercase;
     letter-spacing: 2px;
     display: block;
@@ -243,11 +243,11 @@ form .btn:hover {
     padding: 10px;
     outline: none;
     border: none;
-    color: #000;
+    color: #14274e;
     font-size: 1em;
     background: transparent;
-    border-left: 2px solid #003d80;
-    border-bottom: 2px solid #003d80;
+    border-left: 2px solid #14274e;
+    border-bottom: 2px solid #14274e;
     transition: 0.1s;
     border-bottom-left-radius: 8px;
   }
@@ -262,7 +262,7 @@ form .btn:hover {
     padding: 10px;
     pointer-events: none;
     font-size: 12px;
-    color: #000;
+    color: #14274e;
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 3px;
@@ -274,7 +274,7 @@ form .btn:hover {
     transform: translateX(113px) translateY(-15px);
     font-size: 0.8em;
     padding: 5px 10px;
-    background: #000;
+    background: #14274e;
     letter-spacing: 0.2em;
     color: #fff;
     border: 2px;
@@ -285,7 +285,7 @@ form .btn:hover {
     transform: translateX(156px) translateY(-15px);
     font-size: 0.8em;
     padding: 5px 10px;
-    background: #000;
+    background: #14274e;
     letter-spacing: 0.2em;
     color: #fff;
     border: 2px;
@@ -295,7 +295,7 @@ form .btn:hover {
   .inputBox input:focus,
   .inputBox1 input:valid,
   .inputBox1 input:focus {
-    border: 2px solid #000;
+    border: 2px solid #14274e;
     border-radius: 8px;
   }
   
@@ -303,7 +303,7 @@ form .btn:hover {
     height: 45px;
     width: 100px;
     border-radius: 5px;
-    border: 2px solid #000;
+    border: 2px solid #14274e;
     cursor: pointer;
     background-color: transparent;
     transition: 0.5s;
@@ -314,6 +314,24 @@ form .btn:hover {
   }
   
   .enter:hover {
-    background-color: rgb(0, 0, 0);
+    background-color: #14274e;
     color: white;
   }
+
+.containerformulario {
+    display: flex;
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    height: 100vh;            /* Ocupa toda la altura de la pantalla */
+}
+
+.inputBox textarea:valid~span,
+.inputBox textarea:focus~span {
+    transform: translateX(113px) translateY(-15px);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    background: #14274e;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
