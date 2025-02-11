@@ -246,8 +246,8 @@ form .btn:hover {
     color: #000;
     font-size: 1em;
     background: transparent;
-    border-left: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-left: 2px solid #003d80;
+    border-bottom: 2px solid #003d80;
     transition: 0.1s;
     border-bottom-left-radius: 8px;
   }
